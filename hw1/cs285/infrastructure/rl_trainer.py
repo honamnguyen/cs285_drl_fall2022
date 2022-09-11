@@ -162,6 +162,8 @@ class RL_Trainer(object):
                 # ``` return loaded_paths, 0, None ```
 
                 # (2) collect `self.params['batch_size']` transitions
+        # print('\n---------Debugging----------')
+        # print(collect_policy)
         if itr == 0:
             with open(load_initial_expertdata, 'rb') as f:
                 loaded_paths = pickle.load(f)
@@ -199,7 +201,6 @@ class RL_Trainer(object):
             # HINT: use the agent's train function
             # HINT: keep the agent's training log for debugging
             # train_log = TODO
-            # print('\n---------Debugging----------')
             train_log = self.agent.train(ob_batch, ac_batch, re_batch, next_ob_batch, terminal_batch)
             all_logs.append(train_log)
         return all_logs
