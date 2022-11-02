@@ -1,0 +1,1032 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\begin_preamble
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{xparse} %mathtools loads amsmath
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+\usepackage{cancel} %for Dirac operators
+\usepackage[margin=0.10\textwidth]{caption} %for figure captions
+\usepackage{courier}
+\usepackage{braket}
+\end_preamble
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 0.5in
+\topmargin 0.5in
+\rightmargin 0.5in
+\bottommargin 0.5in
+\headheight 0.2in
+\headsep 0.2in
+\footskip 0.2in
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+
+\series bold
+CS285 - HW4
+\end_layout
+
+\begin_layout Author
+Ho Nam Nguyen
+\end_layout
+
+\begin_layout Section
+Problem 1
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename q1-1.png
+	lyxscale 40
+	scale 40
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename q1-2.png
+	lyxscale 40
+	scale 40
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename q1-3.png
+	lyxscale 40
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Left to right: n500_arch1x32, n5_arch2x250, n500_arch2x250.
+ Best model is the last one with the most number of training steps and the
+ most expressive architecture.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Commands
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+python cs285/scripts/run_hw4_mb.py --exp_name q1_cheetah_n500_arch1x32 
+\end_layout
+
+\begin_layout Plain Layout
+
+--env_name cheetah-cs285-v0 --add_sl_noise --n_iter 1 --batch_size_initial
+ 20000 
+\end_layout
+
+\begin_layout Plain Layout
+
+--num_agent_train_steps_per_iter 500 --n_layers 1 --size 32 --scalar_log_freq
+ -1 
+\end_layout
+
+\begin_layout Plain Layout
+
+--video_log_freq -1 --mpc_action_sampling_strategy 'random'
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+python cs285/scripts/run_hw4_mb.py --exp_name q1_cheetah_n5_arch2x250 
+\end_layout
+
+\begin_layout Plain Layout
+
+--env_name cheetah-cs285-v0 --add_sl_noise --n_iter 1 --batch_size_initial
+ 20000 
+\end_layout
+
+\begin_layout Plain Layout
+
+--num_agent_train_steps_per_iter 5 --n_layers 2 --size 250 --scalar_log_freq
+ -1 
+\end_layout
+
+\begin_layout Plain Layout
+
+--video_log_freq -1 --mpc_action_sampling_strategy 'random'
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+python cs285/scripts/run_hw4_mb.py --exp_name q1_cheetah_n500_arch2x250 
+\end_layout
+
+\begin_layout Plain Layout
+
+--env_name cheetah-cs285-v0 --add_sl_noise --n_iter 1 --batch_size_initial
+ 20000
+\end_layout
+
+\begin_layout Plain Layout
+
+--num_agent_train_steps_per_iter 500 --n_layers 2 --size 250 --scalar_log_freq
+ -1 
+\end_layout
+
+\begin_layout Plain Layout
+
+--video_log_freq -1 --mpc_action_sampling_strategy 'random'
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Problem 2
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename q2.png
+	lyxscale 60
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Commands
+\series default
+
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+python cs285/scripts/run_hw4_mb.py --exp_name q2_obstacles_singleiteration
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+--env_name obstacles-cs285-v0 --add_sl_noise --num_agent_train_steps_per_iter
+ 20 
+\end_layout
+
+\begin_layout Plain Layout
+
+--n_iter 1 --batch_size_initial 5000 --batch_size 1000 --mpc_horizon 10
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+--video_log_freq -1 --mpc_action_sampling_strategy 'random'
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Hyperparameters - DQN
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename q3.png
+	lyxscale 60
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Commands
+\series default
+
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+python cs285/scripts/run_hw4_mb.py --exp_name q3_obstacles --env_name obstacles-c
+s285-v0 
+\end_layout
+
+\begin_layout Plain Layout
+
+--add_sl_noise --num_agent_train_steps_per_iter 20 --batch_size_initial
+ 5000 --batch_size 1000 
+\end_layout
+
+\begin_layout Plain Layout
+
+--mpc_horizon 10 --n_iter 12 --video_log_freq -1 --mpc_action_sampling_strategy
+ 'random'
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+python cs285/scripts/run_hw4_mb.py --exp_name q3_reacher --env_name reacher-cs285
+-v0 
+\end_layout
+
+\begin_layout Plain Layout
+
+--add_sl_noise --mpc_horizon 10 --num_agent_train_steps_per_iter 1000 --batch_si
+ze_initial 5000 
+\end_layout
+
+\begin_layout Plain Layout
+
+--batch_size 5000 --n_iter 15 --video_log_freq -1 --mpc_action_sampling_strategy
+ 'random'
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Problem 4
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename q4-1.png
+	lyxscale 60
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+No significant difference
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename q4-2.png
+	lyxscale 60
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Larger number of candidate action sequences is better
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename q4-3.png
+	lyxscale 60
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+No significant difference
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Commands
+\series default
+
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+python cs285/scripts/run_hw4_mb.py --exp_name q4_reacher_horizon5 
+\end_layout
+
+\begin_layout Plain Layout
+
+--env_name reacher-cs285-v0 --add_sl_noise --mpc_horizon 5 
+\end_layout
+
+\begin_layout Plain Layout
+
+--mpc_action_sampling_strategy 'random' --num_agent_train_steps_per_iter
+ 1000 
+\end_layout
+
+\begin_layout Plain Layout
+
+--batch_size 800 --n_iter 15 --video_log_freq -1 --mpc_action_sampling_strategy
+ 'random'
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+python cs285/scripts/run_hw4_mb.py --exp_name q4_reacher_horizon15 
+\end_layout
+
+\begin_layout Plain Layout
+
+--env_name reacher-cs285-v0 --add_sl_noise --mpc_horizon 15 
+\end_layout
+
+\begin_layout Plain Layout
+
+--num_agent_train_steps_per_iter 1000 --batch_size 800 --n_iter 15 
+\end_layout
+
+\begin_layout Plain Layout
+
+--video_log_freq -1 --mpc_action_sampling_strategy 'random'
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+python cs285/scripts/run_hw4_mb.py --exp_name q4_reacher_horizon30 
+\end_layout
+
+\begin_layout Plain Layout
+
+--env_name reacher-cs285-v0 --add_sl_noise --mpc_horizon 30 
+\end_layout
+
+\begin_layout Plain Layout
+
+--num_agent_train_steps_per_iter 1000 --batch_size 800 --n_iter 15 
+\end_layout
+
+\begin_layout Plain Layout
+
+--video_log_freq -1 --mpc_action_sampling_strategy 'random'
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+python cs285/scripts/run_hw4_mb.py --exp_name q4_reacher_numseq100 
+\end_layout
+
+\begin_layout Plain Layout
+
+--env_name reacher-cs285-v0 --add_sl_noise --mpc_horizon 10 
+\end_layout
+
+\begin_layout Plain Layout
+
+--num_agent_train_steps_per_iter 1000 --batch_size 800 --n_iter 15 
+\end_layout
+
+\begin_layout Plain Layout
+
+--mpc_num_action_sequences 100 --mpc_action_sampling_strategy 'random' 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+python cs285/scripts/run_hw4_mb.py --exp_name q4_reacher_numseq1000 
+\end_layout
+
+\begin_layout Plain Layout
+
+--env_name reacher-cs285-v0 --add_sl_noise --mpc_horizon 10 
+\end_layout
+
+\begin_layout Plain Layout
+
+--num_agent_train_steps_per_iter 1000 --batch_size 800 
+\end_layout
+
+\begin_layout Plain Layout
+
+--n_iter 15 --video_log_freq -1 --mpc_num_action_sequences 1000 
+\end_layout
+
+\begin_layout Plain Layout
+
+--mpc_action_sampling_strategy 'random' 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+python cs285/scripts/run_hw4_mb.py --exp_name q4_reacher_ensemble1 
+\end_layout
+
+\begin_layout Plain Layout
+
+--env_name reacher-cs285-v0 --ensemble_size 1 --add_sl_noise --mpc_horizon
+ 10
+\end_layout
+
+\begin_layout Plain Layout
+
+--num_agent_train_steps_per_iter 1000 --batch_size 800 --n_iter 15 
+\end_layout
+
+\begin_layout Plain Layout
+
+--video_log_freq -1 --mpc_action_sampling_strategy 'random' 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+python cs285/scripts/run_hw4_mb.py --exp_name q4_reacher_ensemble3 
+\end_layout
+
+\begin_layout Plain Layout
+
+--env_name reacher-cs285-v0 --ensemble_size 3 --add_sl_noise --mpc_horizon
+ 10 
+\end_layout
+
+\begin_layout Plain Layout
+
+--num_agent_train_steps_per_iter 1000 --batch_size 800 --n_iter 15 
+\end_layout
+
+\begin_layout Plain Layout
+
+--video_log_freq -1 --mpc_action_sampling_strategy 'random' 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+python cs285/scripts/run_hw4_mb.py --exp_name q4_reacher_ensemble5 
+\end_layout
+
+\begin_layout Plain Layout
+
+--env_name reacher-cs285-v0 --ensemble_size 5 --add_sl_noise --mpc_horizon
+ 10 
+\end_layout
+
+\begin_layout Plain Layout
+
+--num_agent_train_steps_per_iter 1000 --batch_size 800 --n_iter 15 
+\end_layout
+
+\begin_layout Plain Layout
+
+--video_log_freq -1 --mpc_action_sampling_strategy 'random'
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Problem 5 - CEM
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename q5.png
+	lyxscale 60
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+CEM is more effective: blue (4 iterations) is better than orange (2 iterations)
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Commands
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+python cs285/scripts/run_hw4_mb.py --exp_name q5_cheetah_random 
+\end_layout
+
+\begin_layout Plain Layout
+
+--env_name cheetah-cs285-v0 --mpc_horizon 15 --add_sl_noise 
+\end_layout
+
+\begin_layout Plain Layout
+
+--num_agent_train_steps_per_iter 1500 --batch_size_initial 5000 --batch_size
+ 5000 
+\end_layout
+
+\begin_layout Plain Layout
+
+--n_iter 5 --video_log_freq -1 --mpc_action_sampling_strategy random
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+python cs285/scripts/run_hw4_mb.py --exp_name q5_cheetah_cem_2 
+\end_layout
+
+\begin_layout Plain Layout
+
+--env_name 'cheetah-cs285-v0' --mpc_horizon 15 --add_sl_noise 
+\end_layout
+
+\begin_layout Plain Layout
+
+--num_agent_train_steps_per_iter 1500 --batch_size_initial 5000 --batch_size
+ 5000 
+\end_layout
+
+\begin_layout Plain Layout
+
+--n_iter 5 --video_log_freq -1 --mpc_action_sampling_strategy 'cem' --cem_iterat
+ions 2 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+python cs285/scripts/run_hw4_mb.py --exp_name q5_cheetah_cem_4 
+\end_layout
+
+\begin_layout Plain Layout
+
+--env_name 'cheetah-cs285-v0' --mpc_horizon 15 --add_sl_noise 
+\end_layout
+
+\begin_layout Plain Layout
+
+--num_agent_train_steps_per_iter 1500 --batch_size_initial 5000 --batch_size
+ 5000 
+\end_layout
+
+\begin_layout Plain Layout
+
+--n_iter 5 --video_log_freq -1 --mpc_action_sampling_strategy 'cem' --cem_iterat
+ions 4
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+SAC using learned model
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename q6.png
+	lyxscale 60
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+More rollouts from model increase the performance dramatically
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Commands
+\series default
+
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+python cs285/scripts/run_hw4_mbpo.py --exp_name q6_cheetah_rlen0 
+\end_layout
+
+\begin_layout Plain Layout
+
+--env_name 'cheetah-cs285-v0' --add_sl_noise --num_agent_train_steps_per_iter
+ 1500 
+\end_layout
+
+\begin_layout Plain Layout
+
+--batch_size_initial 5000 --batch_size 5000 --n_iter 10 --video_log_freq
+ -1 --sac_discount 0.99 
+\end_layout
+
+\begin_layout Plain Layout
+
+--sac_n_layers 2 --sac_size 256 --sac_batch_size 1500 --sac_learning_rate
+ 0.0003 
+\end_layout
+
+\begin_layout Plain Layout
+
+--sac_init_temperature 0.1 --sac_n_iter 1000 --mbpo_rollout_length 0
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+python cs285/scripts/run_hw4_mbpo.py --exp_name q6_cheetah_rlen1 
+\end_layout
+
+\begin_layout Plain Layout
+
+--env_name 'cheetah-cs285-v0' --add_sl_noise --num_agent_train_steps_per_iter
+ 1500 
+\end_layout
+
+\begin_layout Plain Layout
+
+--batch_size_initial 5000 --batch_size 5000 --n_iter 10 --video_log_freq
+ -1 --sac_discount 0.99 
+\end_layout
+
+\begin_layout Plain Layout
+
+--sac_n_layers 2 --sac_size 256 --sac_batch_size 1500 --sac_learning_rate
+ 0.0003 
+\end_layout
+
+\begin_layout Plain Layout
+
+--sac_init_temperature 0.1 --sac_n_iter 5000 --mbpo_rollout_length 1
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+python cs285/scripts/run_hw4_mbpo.py --exp_name q6_cheetah_rlen10 
+\end_layout
+
+\begin_layout Plain Layout
+
+--env_name 'cheetah-cs285-v0' --add_sl_noise --num_agent_train_steps_per_iter
+ 1500 
+\end_layout
+
+\begin_layout Plain Layout
+
+--batch_size_initial 5000 --batch_size 5000 --n_iter 10 --video_log_freq
+ -1 --sac_discount 0.99 
+\end_layout
+
+\begin_layout Plain Layout
+
+--sac_n_layers 2 --sac_size 256 --sac_batch_size 1500 --sac_learning_rate
+ 0.0003 
+\end_layout
+
+\begin_layout Plain Layout
+
+--sac_init_temperature 0.1 --sac_n_iter 5000 --mbpo_rollout_length 10
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
